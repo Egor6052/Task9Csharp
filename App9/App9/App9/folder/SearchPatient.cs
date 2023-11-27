@@ -15,13 +15,12 @@ namespace App9
         /// <param name="searchDelegate">Найденый делигат</param>
         /// <returns>temporaryQueue</returns>
         /// <exception cref="ArgumentException">В случае если список пуст или Patient == null</exception>
-        public static QueuePatients SearchPatients(QueuePatients queuePatients, string searchPatient, SearchDelegate searchDelegate)
+        public QueuePatients SearchPatients(QueuePatients queuePatients, string searchPatient, SearchDelegate searchDelegate)
         {
             QueuePatients temporaryQueue = new QueuePatients();
-
-            if (queuePatients.Patients != null)
+            if (queuePatients != null)
             {
-                if (queuePatients != null)
+                if (queuePatients.Patients != null)
                 {
                     for (int i = 0; i < queuePatients.Patients.Count(); i++)
                     {

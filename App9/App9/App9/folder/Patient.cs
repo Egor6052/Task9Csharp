@@ -8,7 +8,6 @@ namespace App9
         private string _name;
         private string _surname;
         private int _daysBeforeAppointment;
-        private static int uniqueId = 1;
 
         /// <summary>
         /// Конструктор для полей пациента;
@@ -80,7 +79,7 @@ namespace App9
             get => _name;
             set
             {
-                if (!string.IsNullOrWhiteSpace(value))
+                if (!string.IsNullOrWhiteSpace(value)) //проверка на null или пустую строку;
                 {
                     _name = value.Trim();
                 }

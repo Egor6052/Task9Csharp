@@ -8,23 +8,31 @@ namespace App9
         
         public static void Sort(QueuePatients queuePatients, FilteringDelegate suitablePatient)
         {
-            int count = queuePatients.Patients.Count;
-            for (int i = 0; i < count - 1; i++)
+            if (queuePatients != null)
             {
-                Patient currentPatient = queuePatients.Patients.Dequeue();
-                for (int j = 0; j < count - i - 1; j++)
+                if (queuePatients.Patients != null)
                 {
-                    Patient nextPatient = queuePatients.Patients.Dequeue();
-                    if (suitablePatient(currentPatient, nextPatient))
+                    int count = queuePatients.Patients.Count;
+                    for (int i = 0; i < count - 1; i++)
                     {
-                        // Используем картеж и меняем порядорк в очереди, если нужно;
-                        (currentPatient, nextPatient) = (nextPatient, currentPatient);
+                        Patient currentPatient = queuePatients.Patients.Dequeue();
+                        for (int j = 0; j < count - i - 1; j++)
+                        {
+                            Patient nextPatient = queuePatients.Patients.Dequeue();
+                            if (suitablePatient(currentPatient, nextPatient))
+                            {
+                                // Используем картеж и меняем порядорк в очереди, если нужно;
+                                (currentPatient, nextPatient) = (nextPatient, currentPatient);
+                            }
+
+                            // Возвращаем элементы в очередь;
+                            queuePatients.Patients.Enqueue(nextPatient);
+                        }
+
+                        // Отсортированные элементы;
+                        queuePatients.Patients.Enqueue(currentPatient);
                     }
-                    // Возвращаем элементы в очередь;
-                    queuePatients.Patients.Enqueue(nextPatient);
                 }
-                // Отсортированные элементы;
-                queuePatients.Patients.Enqueue(currentPatient);
             }
         }
         

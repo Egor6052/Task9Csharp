@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace App9
 {
@@ -20,7 +21,7 @@ namespace App9
         /// <exception cref="ArgumentException">В случае, если пациент с таким Id уже есть в очереди.</exception>
         public void AddPatient(Patient newPatient)
         {
-            if (newPatient == null || !patients.Contains(newPatient))
+            if (newPatient is null || !patients.Contains(newPatient))
             {
                 patients.Enqueue(newPatient);
             }
@@ -37,7 +38,7 @@ namespace App9
         /// <exception cref="InvalidOperationException">В случае, если очередь пуста.</exception>
         public void RemovePatient()
         {
-            if (patients.Count > 0)
+            if (patients.Count > 0 && patients != null)
             {
                 patients.Dequeue(); //удаление первого в очереди;
             }
@@ -48,22 +49,24 @@ namespace App9
         }
 
         /// <summary>
-        /// Поиск записи пациента по id в очереди.
+        /// Поиск пациента по имени в очереди.
         /// </summary>
-        /// <param name="patientId"></param>
+        /// <param name="searchName"></param>
         /// <returns>Пациент из очереди</returns>
         /// <exception cref="ArgumentException">В случае, если такой записи нет в очереди.</exception>
-        public Patient FindPatientId(int patientId)
+        public int FindPatientByName(string searchName)
         {
-            foreach (Patient queuePatient in patients)
+            // Проходим по элементам очереди;
+            for (int i = 0; i < patients.Count; i++)
             {
-                if (queuePatient.Id == patientId)
+                if (patients.ElementAt(i).Name == searchName)
                 {
-                    return queuePatient;
+                    return i; // Порядковый номер пациента в очереди;
                 }
             }
-            throw new ArgumentException("Записи не найдено.");
+            throw new ArgumentException("Пациент не найден.");
         }
+
 
         /// <summary>
         /// Вывод всех пациентов в очереди.
