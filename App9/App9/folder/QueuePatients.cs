@@ -21,7 +21,12 @@ namespace App9
         /// <exception cref="ArgumentException">В случае, если пациент с таким Id уже есть в очереди.</exception>
         public void AddPatient(Patient newPatient)
         {
-            if (newPatient is null || !patients.Contains(newPatient))
+            if (newPatient is null)
+            {
+                throw new ArgumentNullException(nameof(newPatient), "Пациент не может быть null.");
+            }
+
+            if (!patients.Contains(newPatient))
             {
                 patients.Enqueue(newPatient);
             }
@@ -30,6 +35,7 @@ namespace App9
                 throw new ArgumentException("Пациент с таким Id уже есть в очереди.");
             }
         }
+
 
         /// <summary>
         /// Извлечение первого пациента из очереди.
@@ -54,18 +60,19 @@ namespace App9
         /// <param name="searchName"></param>
         /// <returns>Пациент из очереди</returns>
         /// <exception cref="ArgumentException">В случае, если такой записи нет в очереди.</exception>
-        public int FindPatientByName(string searchName)
-        {
-            // Проходим по элементам очереди;
-            for (int i = 0; i < patients.Count; i++)
-            {
-                if (patients.ElementAt(i).Name == searchName)
-                {
-                    return i; // Порядковый номер пациента в очереди;
-                }
-            }
-            throw new ArgumentException("Пациент не найден.");
-        }
+        
+        // public int FindPatientByName(string searchName)
+        // {
+        //     // Проходим по элементам очереди;
+        //     for (int i = 0; i < patients.Count; i++)
+        //     {
+        //         if (patients.ElementAt(i).Name == searchName)
+        //         {
+        //             return i; // Порядковый номер пациента в очереди;
+        //         }
+        //     }
+        //     throw new ArgumentException("Пациент не найден.");
+        // }
 
 
         /// <summary>
