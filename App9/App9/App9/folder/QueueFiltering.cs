@@ -46,11 +46,19 @@ namespace App9
         /// <returns>true or false</returns>
         public static bool DescendingByAscendingName(Patient left, Patient right)
         {
-            return string.Compare(left.Name, right.Name, StringComparison.Ordinal) > 0;
+            if (left != null && right != null)
+            {
+                return string.Compare(left.Name, right.Name, StringComparison.Ordinal) > 0;
+            }
+            throw new ArgumentException("left или right == null");
         }
         public static bool DescendingByDescendingName(Patient left, Patient right)
         {
-            return string.Compare(left.Name, right.Name, StringComparison.Ordinal) < 0;
+            if (left != null && right != null)
+            {
+                return string.Compare(left.Name, right.Name, StringComparison.Ordinal) < 0;
+            }
+            throw new ArgumentException("left или right == null");
         }
         
         
@@ -62,12 +70,20 @@ namespace App9
         /// <returns>true or false</returns>
         public static bool DescendingByAscendingId(Patient left, Patient right)
         {
-            return left.Id > right.Id;
+            if (left != null && right != null)
+            {
+                return left.Id > right.Id;
+            }
+            throw new ArgumentException("left или right == null");
         }
 
         public static bool DescendingByDescendingId(Patient left, Patient right)
         {
-            return left.Id < right.Id;
+            if (left != null && right != null)
+            {
+                return left.Id < right.Id;
+            }
+            throw new ArgumentException("left или right == null");
         }
         
         
@@ -79,11 +95,20 @@ namespace App9
         /// <returns>true or false</returns>
         public static bool DescendingByAscendingDaysBeforeAppointment(Patient left, Patient right)
         {
-            return left.DaysBeforeAppointment < right.DaysBeforeAppointment;
+            if (left != null && right != null)
+            {
+                return left.DaysBeforeAppointment < right.DaysBeforeAppointment;
+            }
+            throw new ArgumentException("left или right == null");
+
         }
         public static bool DescendingByDescendingDaysBeforeAppointment(Patient left, Patient right)
         {
-            return left.DaysBeforeAppointment > right.DaysBeforeAppointment;
+            if (left != null && right != null)
+            {
+                return left.DaysBeforeAppointment > right.DaysBeforeAppointment;
+            }
+            throw new ArgumentException("left или right == null");
         }
         
         
@@ -95,11 +120,19 @@ namespace App9
         /// <returns>true or false</returns>
         public static bool DescendingByAscendingSurname(Patient left, Patient right)
         {
-            return string.Compare(left.Surname, right.Surname, StringComparison.Ordinal) > 0;
+            if (left != null && right != null)
+            {
+                return string.Compare(left.Surname, right.Surname, StringComparison.Ordinal) > 0;
+            }
+            throw new ArgumentException("left или right == null");
         }
         public static bool DescendingByDescendingSurname(Patient left, Patient right)
         {
-            return string.Compare(left.Surname, right.Surname, StringComparison.Ordinal) < 0;
+            if (left != null && right != null)
+            {
+                return string.Compare(left.Surname, right.Surname, StringComparison.Ordinal) < 0;
+            }
+            throw new ArgumentException("left или right == null");
         }
         
     }
